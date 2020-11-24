@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Team United</string>
+    <string name="sign_up">SIGN UP</string>
+    <string name="changepswtext">Change Password </string>
+
+    <string name="create_password">Create Strong Password</string>
+
+
+    <string name="Otp_generated">OTP will be generated and sent to your registered mobile number. </string>
+
+    <string name="guest_login">Guest Login </string>
+    <string name="Otp">OTP</string>
+    <string name="spinner_title">Select Country </string>
+    <string name="noconnection">Kindly connect to a WIFI network or enable Mobile Data</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

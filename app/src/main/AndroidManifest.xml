@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.teamunited">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:usesCleartextTraffic="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher_round"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.TeamUnited">
+        <activity android:name=".Activity.Password_Activity"></activity>
+        <activity android:name=".Activity.Testimonial" />
+        <activity android:name=".Activity.Contact_us" />
+        <activity android:name=".Activity.About_CEP" />
+        <activity android:name=".Activity.About_vesige" />
+        <activity android:name=".Activity.About_us" />
+        <activity android:name=".Activity.My_Account" />
+        <activity android:name=".Activity.Notification" />
+        <activity android:name=".Activity.Feedback" />
+        <activity android:name=".Activity.Notes" />
+        <activity android:name=".Activity.Gift" />
+        <activity android:name=".Activity.Reading_tools" />
+        <activity android:name=".Activity.Audio_Tools" />
+        <activity android:name=".Activity.Video_Tools" />
+        <activity android:name=".Activity.Self_Analysis" />
+        <activity android:name=".Activity.News" />
+        <activity android:name=".Activity.Business_School" />
+        <activity android:name=".Activity.Gallery" />
+        <activity android:name=".Activity.CEO_Meeting" />
+        <activity android:name=".Activity.Progress" />
+        <activity android:name=".Activity.Otp" />
+        <activity android:name=".Activity.Distributor_Login" />
+        <activity android:name=".Activity.Guest_Login" />
+        <activity android:name=".Activity.Select_Area" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Activity.IntroActivity" />
+        <activity android:name=".Activity.SplashActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
