@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
 }
 
+
 android {
     compileSdkVersion 28
     buildToolsVersion "30.0.2"
@@ -29,7 +30,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
@@ -86,6 +86,11 @@ dependencies {
 
     //for snack bar
     implementation 'com.irozon.sneaker:sneaker:1.0.1'
+    //for indicator library
 
+    implementation 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
+    //volley
+    implementation 'com.android.volley:volley:1.1.1'
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

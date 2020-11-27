@@ -2,6 +2,7 @@ package com.example.teamunited.Modal;
 
 public class SliderItem {
 
+
     private String description;
     private String imageUrl;
 

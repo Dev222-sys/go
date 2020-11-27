@@ -16,8 +16,10 @@ import android.widget.Toast;
 
 import com.example.teamunited.CheckInternetConnection;
 import com.example.teamunited.MainActivity;
+import com.example.teamunited.Modal.User_login;
 import com.example.teamunited.R;
 import com.example.teamunited.RetrofitClient;
+import com.example.teamunited.storage.SharedPrefManager;
 import com.irozon.sneaker.Sneaker;
 import com.kaopiz.kprogresshud.KProgressHUD;
 import com.rengwuxian.materialedittext.MaterialEditText;
@@ -134,6 +136,19 @@ LinearLayout sign_in,sign_up,forget;
         });
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        if (SharedPrefManager.getInstance(this).isLoggedin())
+        {
+            Intent intent = new Intent(Guest_Login.this,MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+            startActivity(intent);
+        }
+    }
+
     public  void Sign_validation()
     {
 
@@ -176,7 +191,19 @@ LinearLayout sign_in,sign_up,forget;
                     try {
                         if (response.code()==200)
                         {
+                            s=response.body().string();
+                            JSONObject jsonObject=new JSONObject(s);
+                            String did=jsonObject.getString("distributed id");
+                            Toast.makeText(Guest_Login.this, did+"", Toast.LENGTH_SHORT).show();
+                            User_login user_login=new User_login(1,did);
+
+                            SharedPrefManager.getInstance(Guest_Login.this)
+                                    .saveuser(user_login);
+
+
                             Intent intent = new Intent(Guest_Login.this,MainActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
                             startActivity(intent);
                             progress.hidepDialog();
                         }
@@ -336,44 +363,80 @@ LinearLayout sign_in,sign_up,forget;
     }
     public  void Forget_validation()
     {
+        progress.createdialog(this);
+
+        progress.showpDialog();
         String forget_number;
         forget_number=ed_forget_number.getText().toString().trim();
-         if ( forget_number.isEmpty() ||  forget_number.length() < 10) {
+         if ( forget_number.isEmpty() ||  forget_number.length() <10) {
 
             Sneaker.with(Guest_Login.this)
                     .setTitle("Please enter Mobile Number!")
                     .setMessage("")
                     .sneakError();
+            progress.hidepDialog();
         }
          else
          {
-            //
-            // Toast.makeText(Guest_Login.this, "yes", Toast.LENGTH_SHORT).show();
-             forget.setVisibility(View.GONE);
-             sign_in.setVisibility(View.VISIBLE);
-             Sneaker.with(Guest_Login.this)
-                     .setTitle("Password is Sended!")
-                     .setMessage("")
-                     .sneakSuccess();
+             Call<ResponseBody> call= RetrofitClient
+                     .getInstance()
+                     .getApi().forget(token,forget_number);
+             call.enqueue(new Callback<ResponseBody>() {
+                 @Override
+                 public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                     String s=null;
+                     try {
+                         if (response.code()==200)
+                         {
+                             s=response.body().string();
+
+                             JSONObject jsonObject=new JSONObject(s);
+                             String msg=jsonObject.getString("message");
+
+
+                             Sneaker.with(Guest_Login.this)
+                                     .setTitle(msg)
+                                     .setMessage("")
+                                     .sneakSuccess();
+                             Toast.makeText(Guest_Login.this, msg+"", Toast.LENGTH_SHORT).show();
+                             forget.setVisibility(View.GONE);
+                             sign_in.setVisibility(View.VISIBLE);
+                             //Toast.makeText(Guest_Login.this, otp, Toast.LENGTH_SHORT).show();
+                         progress.hidepDialog();
+
+                         }
+                         else {
+                             s=response.errorBody().string();
+                             JSONObject jsonObject=new JSONObject(s);
+                             String error=jsonObject.getString("error");
+                             Sneaker.with(Guest_Login.this)
+                                     .setTitle(error)
+                                     .setMessage("")
+                                     .sneakError();
+                             progress.hidepDialog();
+                         }
+                     } catch (IOException | JSONException e) {
+                         e.printStackTrace();
+                     }
+                 }
+                 @Override
+                 public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                     Sneaker.with(Guest_Login.this)
+                             .setTitle("Server Error")
+                             .setMessage("")
+                             .sneakError();
+                     progress.hidepDialog();
+
+                 }
+             });
+
+
+
+
+
          }
 
-         /*
-        else {
-            Intent in=new Intent(Guest_Login.this,gues.class);
-            startActivity(in);
-
-        }
-*/
-
-/*
-
-        progress.createdialog(Guest_Login.this);
-        progress.showpDialog();
-        Intent intent=new Intent(Guest_Login.this,Otp.class);
-        startActivity(intent);
-        Toast.makeText(Guest_Login.this, mobile_no+Did_id+"", Toast.LENGTH_SHORT).show();
-        progress.hidepDialog();
-*/
 
     }
     @Override

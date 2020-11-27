@@ -37,9 +37,10 @@
         <activity android:name=".Activity.Distributor_Login" />
         <activity android:name=".Activity.Guest_Login" />
         <activity android:name=".Activity.Select_Area" />
-        <activity android:name=".MainActivity" />
         <activity android:name=".Activity.IntroActivity" />
-        <activity android:name=".Activity.SplashActivity">
+        <activity android:name=".Activity.SplashActivity"/>
+
+            <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

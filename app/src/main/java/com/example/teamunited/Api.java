@@ -32,5 +32,15 @@ public interface Api {
             @Field("did") String did,
             @Field("password") String pass
     );
+    @FormUrlEncoded
+
+    @POST("forget.php/")
+    Call<ResponseBody>forget(
+            @Field("token") String token,
+            @Field("phone") String did
+
+    );
+
+
 
 }

@@ -36,6 +36,7 @@ import com.example.teamunited.Activity.SplashActivity;
 import com.example.teamunited.Activity.Testimonial;
 import com.example.teamunited.Activity.Video_Tools;
 import com.example.teamunited.Fragment.Home;
+import com.example.teamunited.storage.SharedPrefManager;
 import com.google.android.material.navigation.NavigationView;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -244,7 +245,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
 
             case R.id.nav_Logout:
                 //AlertDialogBox();
+
                 Toast.makeText(this, "Welcome to Logout ", Toast.LENGTH_SHORT).show();
+                logout();
                 break;
         }
         mDrawerLayout.closeDrawer(GravityCompat.START);
@@ -268,5 +271,15 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
             default:
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void logout()
+    {
+        SharedPrefManager.getInstance(this).clear();
+        Intent intent = new Intent(this,Guest_Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        startActivity(intent);
     }
 }
