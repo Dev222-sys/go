@@ -6,14 +6,15 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TeamUnited">
-        <activity android:name=".Activity.Password_Activity"></activity>
+        android:theme="@style/Theme.TeamUnited"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activity.Video_playing_Activity"></activity>
+        <activity android:name=".Activity.Password_Activity" />
         <activity android:name=".Activity.Testimonial" />
         <activity android:name=".Activity.Contact_us" />
         <activity android:name=".Activity.About_CEP" />
@@ -38,9 +39,8 @@
         <activity android:name=".Activity.Guest_Login" />
         <activity android:name=".Activity.Select_Area" />
         <activity android:name=".Activity.IntroActivity" />
-        <activity android:name=".Activity.SplashActivity"/>
-
-            <activity android:name=".MainActivity" >
+        <activity android:name=".Activity.SplashActivity" />
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
